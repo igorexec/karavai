@@ -30,5 +30,12 @@
   "bugs": {
     "url": "https://github.com/igorexec/karavai/issues"
   },
-  "homepage": "https://github.com/igorexec/karavai#readme"
+  "homepage": "https://github.com/igorexec/karavai#readme",
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "prettier": "1.19.1",
+    "prettier-eslint": "9.0.1",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10"
+  }
 }
