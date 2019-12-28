@@ -12,10 +12,8 @@
   },
   "keywords": [
     "scrolling",
-    "images",
     "smooth",
     "canvas",
-    "images",
     "animation",
     "scroll",
     "images",
@@ -32,7 +30,9 @@
   },
   "homepage": "https://github.com/igorexec/karavai#readme",
   "devDependencies": {
-    "eslint": "6.8.0",
+    "eslint": "6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "2.18.2",
     "prettier": "1.19.1",
     "prettier-eslint": "9.0.1",
     "webpack": "4.41.5",
