@@ -1,8 +1,11 @@
 export default class Karavai {
   private stream: string[];
 
-  constructor(stream: string[]) {
+  private canvas: HTMLCanvasElement;
+
+  constructor(stream: string[], canvasRef: HTMLCanvasElement) {
     this.stream = stream;
+    this.canvas = canvasRef;
   }
 
   preloadImages = () => {
