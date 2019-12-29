@@ -7,12 +7,15 @@ export default class Karavai {
 
   private canvas: HTMLCanvasElement;
 
+  private context: CanvasRenderingContext2D | null;
+
   private options: object;
 
   constructor(stream: string[], canvasRef: HTMLCanvasElement, options: object = {}) {
     this.stream = stream;
     this.canvas = canvasRef;
     this.options = options;
+    this.context = canvasRef.getContext('2d');
   }
 
   preloadImages = () => new Promise((resolve, reject) => {
@@ -29,5 +32,15 @@ export default class Karavai {
 
   private onImageLoad = (imgPath: string) => {
     this.loadedImages.push(imgPath);
+  };
+
+  private drawImageOnCanvas = (imgPath: string) => {
+    const image = new Image();
+    image.src = imgPath;
+    image.onload = () => {
+      if (this.context) {
+        this.context.drawImage(image, 0, 0);
+      }
+    };
   };
 }
