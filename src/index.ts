@@ -1,5 +1,5 @@
 export default class Karavai {
   render() {
-    return this.value;
+    return 11;
   }
 }
