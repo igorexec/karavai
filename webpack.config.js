@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -16,11 +17,15 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: ['@babel/preset-env'],
+          options: {
+            presets: ['@babel/preset-env'],
+          },
         },
       },
     ],
   },
+
+  plugins: [new HtmlWebpackPlugin()],
 
   output: {
     filename: '[name].js',
