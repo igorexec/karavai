@@ -1,7 +1,14 @@
 export default class Karavai {
-  value = 'test';
+  private stream: string[];
 
-  render() {
-    return this.value;
+  constructor(stream: string[]) {
+    this.stream = stream;
   }
+
+  preloadImages = () => {
+    this.stream.forEach((imgPath) => {
+      const img = new Image();
+      img.src = imgPath;
+    });
+  };
 }
