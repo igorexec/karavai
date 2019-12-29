@@ -9,6 +9,19 @@ module.exports = {
 
   mode: isProduction ? 'production' : 'development',
 
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: ['@babel/preset-env'],
+        },
+      },
+    ],
+  },
+
   output: {
     filename: '[name].js',
     path: path.join(__dirname, 'dist'),
