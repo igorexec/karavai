@@ -11,6 +11,8 @@ export default class Karavai {
 
   private options: object;
 
+  private startPosition = 0;
+
   constructor(stream: string[], canvasRef: HTMLCanvasElement, options: object = {}) {
     this.stream = stream;
     this.canvas = canvasRef;
@@ -30,6 +32,29 @@ export default class Karavai {
     });
   });
 
+  start = () => {
+    this.startPosition = window.pageYOffset;
+    this.subscribe();
+  };
+
+  stop = () => {
+    this.unsubscribe();
+  };
+
+  private subscribe = () => {
+    document.addEventListener('scroll', this.onScroll);
+  };
+
+  private unsubscribe = () => {
+    document.removeEventListener('scroll', this.onScroll);
+  };
+
+  private onScroll = () => {
+    const positionFromStart = window.pageYOffset - this.startPosition;
+    const index = Math.round(positionFromStart / 30);
+    this.drawImageOnCanvas(this.loadedImages[index]);
+  };
+
   private onImageLoad = (imgPath: string) => {
     this.loadedImages.push(imgPath);
   };
@@ -39,6 +64,8 @@ export default class Karavai {
     image.src = imgPath;
     image.onload = () => {
       if (this.context) {
+        this.canvas.width = image.width;
+        this.canvas.height = image.height;
         this.context.drawImage(image, 0, 0);
       }
     };

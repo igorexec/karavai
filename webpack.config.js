@@ -22,6 +22,10 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    extensions: ['.ts'],
+  },
+
   plugins: [new HtmlWebpackPlugin()],
 
   output: {
