@@ -54,10 +54,10 @@ export default class Karavai {
 
   private onScroll = () => {
     const positionFromStart = window.pageYOffset - this.startPosition;
-    const nextFrameIndex = Math.round(positionFromStart / 30);
+    const nextFrameIndex = Math.round(positionFromStart / 60);
 
     const isLastFrame = nextFrameIndex + 1 > this.stream.length;
-    if (isLastFrame) {
+    if (isLastFrame || nextFrameIndex < 0) {
       return;
     }
 
