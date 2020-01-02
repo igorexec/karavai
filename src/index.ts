@@ -25,7 +25,10 @@ export default class Karavai {
       createImage(imgPath, {
         onLoad: () => {
           this.onImageLoad(imgPath);
-          if (this.loadedImages.length === this.stream.length) resolve();
+          if (this.loadedImages.length === this.stream.length) {
+            this.onAllImagesLoad();
+            resolve();
+          }
         },
         onError: (err: Event | string) => reject(err),
       });
@@ -57,6 +60,10 @@ export default class Karavai {
 
   private onImageLoad = (imgPath: string) => {
     this.loadedImages.push(imgPath);
+  };
+
+  private onAllImagesLoad = () => {
+    this.loadedImages.sort();
   };
 
   private drawImageOnCanvas = (imgPath: string) => {
