@@ -1,4 +1,5 @@
 import { createImage } from './image';
+import { KaravaiOptions } from './types';
 
 export default class Karavai {
   private stream: string[];
@@ -9,11 +10,15 @@ export default class Karavai {
 
   private context: CanvasRenderingContext2D | null;
 
-  private options: object;
+  private options: KaravaiOptions;
 
   private startPosition = 0;
 
-  constructor(stream: string[], canvasRef: HTMLCanvasElement, options: object = {}) {
+  constructor(
+    stream: string[],
+    canvasRef: HTMLCanvasElement,
+    options: KaravaiOptions = { speed: 1 },
+  ) {
     this.stream = stream;
     this.canvas = canvasRef;
     this.options = options;
@@ -21,12 +26,13 @@ export default class Karavai {
   }
 
   preloadImages = () => new Promise((resolve, reject) => {
+    const { onImagesLoad } = this.options;
     this.stream.forEach((imgPath) => {
       createImage(imgPath, {
         onLoad: () => {
           this.onImageLoad(imgPath);
           if (this.loadedImages.length === this.stream.length) {
-            this.onAllImagesLoad();
+            if (onImagesLoad) onImagesLoad();
             resolve();
           }
         },
@@ -54,7 +60,8 @@ export default class Karavai {
 
   private onScroll = () => {
     const positionFromStart = window.pageYOffset - this.startPosition;
-    const nextFrameIndex = Math.round(positionFromStart / 60);
+    const speed = this.options.speed * 30;
+    const nextFrameIndex = Math.round(positionFromStart / speed);
 
     const isLastFrame = nextFrameIndex + 1 > this.stream.length;
     if (isLastFrame || nextFrameIndex < 0) {
@@ -66,10 +73,6 @@ export default class Karavai {
 
   private onImageLoad = (imgPath: string) => {
     this.loadedImages.push(imgPath);
-  };
-
-  private onAllImagesLoad = () => {
-    this.loadedImages.sort();
   };
 
   private drawImageOnCanvas = (imgPath: string) => {
