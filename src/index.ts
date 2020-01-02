@@ -54,8 +54,14 @@ export default class Karavai {
 
   private onScroll = () => {
     const positionFromStart = window.pageYOffset - this.startPosition;
-    const index = Math.round(positionFromStart / 30);
-    this.drawImageOnCanvas(this.loadedImages[index]);
+    const nextFrameIndex = Math.round(positionFromStart / 30);
+
+    const isLastFrame = nextFrameIndex + 1 > this.stream.length;
+    if (isLastFrame) {
+      return;
+    }
+
+    this.drawImageOnCanvas(this.loadedImages[nextFrameIndex]);
   };
 
   private onImageLoad = (imgPath: string) => {
