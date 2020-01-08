@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -28,9 +29,17 @@ module.exports = {
     extensions: [".ts", ".js"]
   },
 
-  plugins: [new HtmlWebpackPlugin({
-    template: path.join(__dirname, 'public/index.html')
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "public/index.html")
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, "public/img"),
+        to: path.join(__dirname, "dist/img")
+      }
+    ])
+  ],
 
   output: {
     filename: "[name].[contenthash:8].js",
@@ -40,6 +49,6 @@ module.exports = {
   },
 
   devServer: {
-    port: 3333
+    port: 3334
   }
 };
