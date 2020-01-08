@@ -45,6 +45,7 @@ export default class Karavai {
 
   start = () => {
     this.startPosition = window.pageYOffset
+    this.drawImageOnCanvas(this.loadedImages[0])
     this.subscribe()
   }
 
