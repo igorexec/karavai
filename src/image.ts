@@ -1,4 +1,4 @@
-import { noop } from './helpers';
+import { noop } from "./helpers";
 
 interface ImageCreateOptions {
   onLoad: (ev: Event) => void;
@@ -7,7 +7,7 @@ interface ImageCreateOptions {
 
 export const createImage = (
   url: string,
-  options: ImageCreateOptions = { onLoad: noop, onError: noop },
+  options: ImageCreateOptions = { onLoad: noop, onError: noop }
 ) => {
   const image = new Image();
   image.src = url;

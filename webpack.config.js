@@ -1,15 +1,15 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, 'src/index.ts'),
+    main: path.join(__dirname, "src/index.ts")
   },
 
-  mode: isProduction ? 'production' : 'development',
-  devtool: !isProduction ? 'inline-source-map' : undefined,
+  mode: isProduction ? "production" : "development",
+  devtool: !isProduction ? "inline-source-map" : undefined,
 
   module: {
     rules: [
@@ -17,27 +17,29 @@ module.exports = {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: {
-          loader: 'ts-loader',
-        },
-      },
-    ],
+          loader: "ts-loader"
+        }
+      }
+    ]
   },
 
   resolve: {
-    modules: ['node_modules'],
-    extensions: ['.ts', '.js'],
+    modules: ["src", "node_modules"],
+    extensions: [".ts", ".js"]
   },
 
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({
+    template: path.join(__dirname, 'public/index.html')
+  })],
 
   output: {
-    filename: '[name].js',
-    path: path.join(__dirname, 'dist'),
-    library: 'Karavai',
-    libraryExport: 'default',
+    filename: "[name].[contenthash:8].js",
+    path: path.join(__dirname, "dist"),
+    library: "Karavai",
+    libraryExport: "default"
   },
 
   devServer: {
-    port: 3333,
+    port: 3333
   }
 };
