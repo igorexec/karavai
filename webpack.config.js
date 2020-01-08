@@ -9,6 +9,7 @@ module.exports = {
   },
 
   mode: isProduction ? 'production' : 'development',
+  devtool: !isProduction ? 'inline-source-map' : undefined,
 
   module: {
     rules: [
@@ -23,7 +24,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts'],
+    modules: ['node_modules'],
+    extensions: ['.ts', '.js'],
   },
 
   plugins: [new HtmlWebpackPlugin()],
@@ -34,4 +36,8 @@ module.exports = {
     library: 'Karavai',
     libraryExport: 'default',
   },
+
+  devServer: {
+    port: 3333,
+  }
 };
