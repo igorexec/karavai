@@ -1,0 +1,36 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest"
+  ],
+  "rules": {
+    "quotemark": {
+      "options": ["single"]
+    },
+    "trailing-comma": {
+      "options": {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    },
+    "eofline": true,
+    "ordered-imports": false,
+    "no-default-export": true,
+    "max-line-length": {
+      "options": {"limit": 150}
+    },
+    "indent": {
+      "options": "spaces"
+    },
+    "interface-name": false,
+    "arrow-parens": false,
+    "no-implicit-dependencies": false,
+    "member-access": {
+      "options": "no-public"
+    },
+    "semicolon": {
+      "options": "never"
+    },
+    "prettier": true
+  }
+}
