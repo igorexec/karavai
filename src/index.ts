@@ -4,48 +4,34 @@ import { KaravaiOptions } from './types'
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
   private loadedImages: string[] = []
-
-  private canvas: HTMLCanvasElement
-
-  private context: CanvasRenderingContext2D | null
-
-  private options: KaravaiOptions
-
   private startPosition = 0
+  private readonly context: CanvasRenderingContext2D | null
 
   constructor(
     private stream: string[],
     private canvasRef: HTMLCanvasElement,
-    options: KaravaiOptions = { speed: 1 },
+    private options: KaravaiOptions = { speed: 1 },
   ) {
-    this.stream = stream
-    this.canvas = canvasRef
-    this.options = options
     this.context = canvasRef.getContext('2d')
   }
 
   preloadImages = () =>
     new Promise((resolve, reject) => {
-      const { onImagesLoad } = this.options
       this.stream.forEach(imgPath => {
-        createImage(imgPath, {
-          onError: (err: Event | string) => reject(err),
-          onLoad: () => {
-            this.onImageLoad(imgPath)
-            if (this.loadedImages.length === this.stream.length) {
-              if (onImagesLoad) {
-                onImagesLoad()
-              }
-              resolve()
-            }
-          },
-        })
+        const image = createImage(imgPath)
+        image.onerror = err => reject(err)
+        image.onload = () => {
+          this.loadedImages.push(imgPath)
+          if (this.loadedImages.length === this.stream.length) {
+            resolve()
+          }
+        }
       })
     })
 
   start = () => {
     this.startPosition = window.pageYOffset
-    this.drawImageOnCanvas(this.loadedImages[0])
+    this.drawImageOnCanvas(this.stream[0])
     this.subscribe()
   }
 
@@ -71,27 +57,23 @@ export default class Karavai {
       return
     }
 
-    this.drawImageOnCanvas(this.loadedImages[nextFrameIndex])
-  }
-
-  private onImageLoad = (imgPath: string) => {
-    this.loadedImages.push(imgPath)
+    this.drawImageOnCanvas(this.stream[nextFrameIndex])
   }
 
   private drawImageOnCanvas = (imgPath: string) => {
-    const image = new Image()
-    image.src = imgPath
+    const image = createImage(imgPath)
     image.onload = () => {
-      if (this.context) {
-        this.canvas.width = image.width
-        this.canvas.height = image.height
-        this.context.drawImage(image, 0, 0)
+      if (!this.context) {
+        return
       }
+      this.canvasRef.width = image.width
+      this.canvasRef.height = image.height
+      this.context.drawImage(image, 0, 0)
     }
   }
 }
 
-(async function() {
+(async () => {
   const images = Array.from({ length: 40 }, (_, idx) => `/img/${idx}.jpg`)
   const canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
