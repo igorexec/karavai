@@ -8,7 +8,6 @@ module.exports = {
   entry: {
     main: path.join(__dirname, "src/index.ts")
   },
-
   mode: isProduction ? "production" : "development",
   devtool: !isProduction ? "inline-source-map" : undefined,
 
