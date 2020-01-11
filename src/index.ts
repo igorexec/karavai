@@ -1,37 +1,26 @@
-import { createImage } from './image'
+import { createImage, preloadImage } from './image'
 import { KaravaiOptions } from './types'
 
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
-  private loadedImages: string[] = []
   private startPosition = 0
   private readonly context: CanvasRenderingContext2D | null
 
   constructor(
-    private stream: string[],
+    private images: string[],
     private canvasRef: HTMLCanvasElement,
     private options: KaravaiOptions = { speed: 1 },
   ) {
     this.context = canvasRef.getContext('2d')
+    canvasRef.style.width = '100%'
   }
 
   preloadImages = () =>
-    new Promise((resolve, reject) => {
-      this.stream.forEach(imgPath => {
-        const image = createImage(imgPath)
-        image.onerror = err => reject(err)
-        image.onload = () => {
-          this.loadedImages.push(imgPath)
-          if (this.loadedImages.length === this.stream.length) {
-            resolve()
-          }
-        }
-      })
-    })
+    Promise.all(this.images.map(imagePath => preloadImage(imagePath)))
 
   start = () => {
     this.startPosition = window.pageYOffset
-    this.drawImageOnCanvas(this.stream[0])
+    this.drawImageOnCanvas(this.images[0])
     this.subscribe()
   }
 
@@ -52,12 +41,12 @@ export default class Karavai {
     const speed = this.options.speed * 30
     const nextFrameIndex = Math.round(positionFromStart / speed)
 
-    const isLastFrame = nextFrameIndex + 1 > this.stream.length
+    const isLastFrame = nextFrameIndex + 1 > this.images.length
     if (isLastFrame || nextFrameIndex < 0) {
       return
     }
 
-    this.drawImageOnCanvas(this.stream[nextFrameIndex])
+    this.drawImageOnCanvas(this.images[nextFrameIndex])
   }
 
   private drawImageOnCanvas = (imgPath: string) => {
