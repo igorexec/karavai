@@ -6,10 +6,8 @@
   "scripts": {
     "clean": "rimraf dist/",
     "test": "jest",
-    "build:prod": "cross-env NODE_ENV=production wepback",
-    "build:dev": "webpack",
     "copy-pkg": "copyfiles package.json dist",
-    "build": "yarn clean && yarn build:dev && yarn copy-pkg",
+    "build": "yarn clean && cross-env NODE_ENV=production webpack && yarn copy-pkg",
     "start": "webpack-dev-server"
   },
   "repository": {
