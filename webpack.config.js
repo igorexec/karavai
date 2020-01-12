@@ -41,10 +41,11 @@ module.exports = {
   ],
 
   output: {
-    filename: '[name].[contenthash:8].js',
+    filename: 'index.js',
     path: path.join(__dirname, 'dist'),
     library: 'Karavai',
-    libraryExport: 'default'
+    libraryExport: 'default',
+    libraryTarget: 'umd'
   },
 
   devServer: {
