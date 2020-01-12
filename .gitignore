@@ -6,3 +6,5 @@
 .DS_Store
 
 /dist/
+
+src/types-d/
