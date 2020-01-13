@@ -45,7 +45,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     library: 'Karavai',
     libraryExport: 'default',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'umd'
   },
 
   devServer: {
