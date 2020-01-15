@@ -14,7 +14,6 @@ export default class Karavai {
     private options: KaravaiOptions = { speed: 1 },
   ) {
     this.context = canvasRef.getContext('2d')
-    canvasRef.style.width = '100%'
     this.cachedImages = new Map<string, HTMLImageElement>()
   }
 
