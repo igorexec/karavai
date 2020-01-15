@@ -5,7 +5,7 @@ import { KaravaiOptions } from './types'
 export default class Karavai {
   private startPosition = 0
   private readonly context: CanvasRenderingContext2D | null
-  private cachedImages: HTMLImageElement[] = []
+  private cachedImages: Map<string, HTMLImageElement>
 
   constructor(
     private images: string[],
@@ -14,6 +14,7 @@ export default class Karavai {
   ) {
     this.context = canvasRef.getContext('2d')
     canvasRef.style.width = '100%'
+    this.cachedImages = new Map<string, HTMLImageElement>()
   }
 
   preloadImages = () =>
