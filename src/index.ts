@@ -1,6 +1,6 @@
-import { createImage, preloadImage } from './image'
-import { KaravaiOptions } from './types'
-import { PIXELS_THRESHOLD_FOR_FRAME } from './constants'
+import {createImage, preloadImage} from './image'
+import {KaravaiOptions} from './types'
+import {PIXELS_THRESHOLD_FOR_FRAME} from './constants'
 
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
@@ -11,7 +11,7 @@ export default class Karavai {
   constructor(
     private images: string[],
     private canvasRef: HTMLCanvasElement,
-    private options: KaravaiOptions = { speed: 1 },
+    private options: KaravaiOptions = {speed: 1},
   ) {
     this.context = canvasRef.getContext('2d')
     this.cachedImages = new Map<string, HTMLImageElement>()
@@ -19,11 +19,7 @@ export default class Karavai {
 
   preloadImages = () =>
     Promise.all(
-      this.images.map(imagePath =>
-        preloadImage(imagePath).then(img =>
-          this.cachedImages.set(imagePath, img),
-        ),
-      ),
+      this.images.map(imagePath => preloadImage(imagePath).then(img => this.cachedImages.set(imagePath, img))),
     )
 
   start = () => {
@@ -72,11 +68,11 @@ export default class Karavai {
 }
 
 (async () => {
-  const images = Array.from({ length: 40 }, (_, idx) => `/img/${idx}.jpg`)
+  const images = Array.from({length: 40}, (_, idx) => `/img/${idx}.jpg`)
   const canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
   if (canvas) {
-    const karavai = new Karavai(images, canvas, { speed: 0.8 })
+    const karavai = new Karavai(images, canvas, {speed: 0.8})
     await karavai.preloadImages()
     karavai.start()
   }
