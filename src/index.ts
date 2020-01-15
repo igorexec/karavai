@@ -5,6 +5,7 @@ import { KaravaiOptions } from './types'
 export default class Karavai {
   private startPosition = 0
   private readonly context: CanvasRenderingContext2D | null
+  private cachedImages: HTMLImageElement[] = []
 
   constructor(
     private images: string[],
@@ -16,7 +17,11 @@ export default class Karavai {
   }
 
   preloadImages = () =>
-    Promise.all(this.images.map(imagePath => preloadImage(imagePath)))
+    Promise.all(
+      this.images.map(imagePath =>
+        preloadImage(imagePath).then(img => this.cachedImages.push(img)),
+      ),
+    )
 
   start = () => {
     this.startPosition = window.pageYOffset
