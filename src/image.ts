@@ -4,9 +4,9 @@ export const createImage = (url: string) => {
   return image
 }
 
-export const preloadImage = (imagePath: string): Promise<Event> =>
+export const preloadImage = (imagePath: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = createImage(imagePath)
-    image.onload = resolve
+    image.onload = () => resolve(image)
     image.onerror = reject
   })
