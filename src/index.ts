@@ -20,7 +20,9 @@ export default class Karavai {
   preloadImages = () =>
     Promise.all(
       this.images.map(imagePath =>
-        preloadImage(imagePath).then(img => this.cachedImages.push(img)),
+        preloadImage(imagePath).then(img =>
+          this.cachedImages.set(imagePath, img),
+        ),
       ),
     )
 
