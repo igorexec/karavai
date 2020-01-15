@@ -1,5 +1,6 @@
 import { createImage, preloadImage } from './image'
 import { KaravaiOptions } from './types'
+import { PIXELS_THRESHOLD_FOR_FRAME } from './constants'
 
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
@@ -46,7 +47,7 @@ export default class Karavai {
 
   private onScroll = () => {
     const positionFromStart = window.pageYOffset - this.startPosition
-    const speed = this.options.speed * 30
+    const speed = this.options.speed * PIXELS_THRESHOLD_FOR_FRAME
     const nextFrameIndex = Math.round(positionFromStart / speed)
 
     const isLastFrame = nextFrameIndex + 1 > this.images.length
