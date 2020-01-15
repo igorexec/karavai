@@ -59,13 +59,14 @@ export default class Karavai {
   }
 
   private drawImageOnCanvas = (imgPath: string) => {
-    const image = createImage(imgPath)
-    image.onload = () => {
-      if (!this.context) {
-        return
-      }
-      this.canvasRef.width = image.width
-      this.canvasRef.height = image.height
+    let image = this.cachedImages.get(imgPath)
+
+    if (!image) {
+      image = createImage(imgPath)
+    }
+    this.canvasRef.width = image.width
+    this.canvasRef.height = image.height
+    if (this.context) {
       this.context.drawImage(image, 0, 0)
     }
   }
@@ -76,7 +77,7 @@ export default class Karavai {
   const canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
   if (canvas) {
-    const karavai = new Karavai(images, canvas)
+    const karavai = new Karavai(images, canvas, { speed: 0.8 })
     await karavai.preloadImages()
     karavai.start()
   }
