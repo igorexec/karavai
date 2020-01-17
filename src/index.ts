@@ -1,6 +1,5 @@
 import {createImage, preloadImage} from './image'
 import {KaravaiOptions} from './types'
-import {PIXELS_THRESHOLD_FOR_FRAME} from './constants'
 
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
@@ -11,7 +10,7 @@ export default class Karavai {
   constructor(
     private images: string[],
     private canvasRef: HTMLCanvasElement,
-    private options: KaravaiOptions = {speed: 1},
+    private options: KaravaiOptions = {threshold: 30},
   ) {
     this.context = canvasRef.getContext('2d')
     this.cachedImages = new Map<string, HTMLImageElement>()
@@ -42,8 +41,7 @@ export default class Karavai {
 
   private onScroll = () => {
     const positionFromStart = window.pageYOffset - this.startPosition
-    const speed = this.options.speed * PIXELS_THRESHOLD_FOR_FRAME
-    const nextFrameIndex = Math.round(positionFromStart / speed)
+    const nextFrameIndex = Math.round(positionFromStart / this.options.threshold)
 
     const isLastFrame = nextFrameIndex + 1 > this.images.length
     if (isLastFrame || nextFrameIndex < 0) {
@@ -72,7 +70,7 @@ export default class Karavai {
   const canvas: HTMLCanvasElement | null = document.querySelector('#canvas')
 
   if (canvas) {
-    const karavai = new Karavai(images, canvas, {speed: 0.8})
+    const karavai = new Karavai(images, canvas)
     await karavai.preloadImages()
     karavai.start()
   }

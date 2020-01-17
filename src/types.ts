@@ -1,3 +1,3 @@
 export interface KaravaiOptions {
-  speed: number
+  threshold: number
 }

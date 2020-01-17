@@ -1,1 +1,0 @@
-export const PIXELS_THRESHOLD_FOR_FRAME = 30
