@@ -1,4 +1,4 @@
-import Karavai from '../lib'
+import Karavai from 'lib'
 
 (async () => {
   const images = Array.from({length: 40}, (_, idx) => `/img/${idx}.jpg`)
