@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist/",
     "test": "jest",
-    "copy-pkg": "copyfiles --flat src/types-d/index.d.ts package.json dist",
+    "copy-pkg": "copyfiles --flat @types/lib/index.d.ts package.json dist",
     "build": "yarn clean && cross-env NODE_ENV=production webpack && yarn copy-pkg",
     "start": "webpack-dev-server"
   },
