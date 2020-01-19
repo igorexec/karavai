@@ -1,2 +1,4 @@
 webpack.config.js linguist-detectable=false
 public/* linguist-detectable=false
+build/* linguist-detectable=false
+src/* linguist-detectable=false
