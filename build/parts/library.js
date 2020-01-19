@@ -6,8 +6,7 @@ module.exports.library = {
 
   plugins: [
     copyPlugin([
-      {from: paths.libraryPackage, to: paths.distPackage},
-      {from: paths.libraryTypes, to: paths.distPackage}
+      {from: paths.libraryPackage, to: paths.distPackage}
     ])
   ],
 
