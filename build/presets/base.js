@@ -17,7 +17,7 @@ const commonConfig = {
   resolve: {
     symlinks: false,
     modules: ['src', 'node_modules', './'],
-    extensions: ['.ts']
+    extensions: ['.ts', '.js']
   }
 }
 
