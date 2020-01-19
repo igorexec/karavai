@@ -54,6 +54,7 @@ export default class Karavai {
   private drawImageOnCanvas = (imgPath: string) => {
     let image = this.cachedImages.get(imgPath)
 
+    // TODO: if no image, download it, show and add to cache
     if (!image) {
       image = createImage(imgPath)
     }
