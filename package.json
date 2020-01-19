@@ -4,7 +4,7 @@
   "description": "Images sequence scrolling engine",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist out-pkg ./@types",
+    "clean": "rimraf dist bundle ./@types",
     "test": "jest",
     "package:build": "yarn clean && cross-env NODE_ENV=production webpack",
     "preview:build": "yarn clean && cross-env NODE_ENV=production webpack",
