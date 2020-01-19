@@ -11,6 +11,10 @@ const distPackage = path.resolve(root, 'out-pkg')
 const libraryPackage = path.resolve(library, 'package.json')
 const types = path.resolve(root, '@types')
 const libraryTypes = path.resolve(types, 'lib/index.d.ts')
+const static = path.resolve(root, 'public')
+const htmlFile = path.resolve(static, 'index.html')
+const distImg = path.resolve(dist, 'img')
+const staticImgs = path.resolve(static, 'img')
 
 module.exports = {
   env: {
@@ -31,6 +35,9 @@ module.exports = {
     dist,
     distPackage,
     libraryPackage,
-    libraryTypes
+    libraryTypes,
+    htmlFile,
+    distImg,
+    staticImgs
   }
 }

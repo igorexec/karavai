@@ -1,9 +1,11 @@
 const merge = require('webpack-merge')
 const {basePreset} = require('./presets')
-const {library} = require('./parts')
+const {library, preview} = require('./parts')
 
 const createWebpackConfig = lifeCycle => {
   switch (lifeCycle) {
+  case 'preview:build':
+    return merge.smart(basePreset, preview)
   case 'package:build':
     return merge.smart(basePreset, library)
   default:
