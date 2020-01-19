@@ -1,15 +1,12 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, 'src/index.ts')
+    index: path.join(__dirname, 'lib/index.ts')
   },
-  mode: isProduction ? 'production' : 'development',
-  devtool: !isProduction ? 'inline-source-map' : undefined,
+
+  mode: 'production',
 
   module: {
     rules: [
@@ -24,31 +21,27 @@ module.exports = {
   },
 
   resolve: {
-    modules: ['src', 'node_modules'],
-    extensions: ['.ts', '.js']
+    extensions: ['.ts']
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'public/index.html')
-    }),
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, 'public/img'),
-        to: path.join(__dirname, 'dist/img')
+        from: path.join(__dirname, 'package.json'),
+        to: path.join(__dirname, 'dist-lib')
+      },
+      {
+        from: path.join(__dirname, '@types/lib/index.d.ts'),
+        to: path.join(__dirname, 'dist-lib')
       }
     ])
   ],
 
   output: {
-    filename: isProduction ? 'index.js' : '[name].[contenthash:8].js',
-    path: path.join(__dirname, 'dist'),
+    filename: 'index.js',
+    path: path.join(__dirname, 'dist-lib'),
     library: 'Karavai',
     libraryExport: 'default',
     libraryTarget: 'umd'
-  },
-
-  devServer: {
-    port: 3334
   }
 }
