@@ -4,12 +4,13 @@
   "description": "Images sequence scrolling engine",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist out-pkg",
+    "clean": "rimraf dist out-pkg @types",
     "test": "jest",
-    "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.dev.js",
+    "build": "yarn clean && cross-env NODE_ENV=production webpack",
     "start": "webpack-dev-server --config webpack.config.dev.js",
-    "package:build": "yarn clean && cross-env NODE_ENV=production webpack",
-    "preview:build": "yarn clean && cross-env NODE_ENV=productuin webpack"
+    "package:build": "yarn run build",
+    "preview:build": "yarn run build",
+    "preview:start": "yarn clean && webpack-dev-server"
   },
   "repository": {
     "type": "git",

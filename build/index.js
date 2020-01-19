@@ -1,5 +1,5 @@
 const merge = require('webpack-merge')
-const {basePreset} = require('./presets')
+const {basePreset, devServerPreset} = require('./presets')
 const {library, preview} = require('./parts')
 
 const createWebpackConfig = lifeCycle => {
@@ -8,6 +8,8 @@ const createWebpackConfig = lifeCycle => {
     return merge.smart(basePreset, preview)
   case 'package:build':
     return merge.smart(basePreset, library)
+  case 'preview:start':
+    return merge.smart(basePreset, preview, devServerPreset)
   default:
     throw new Error('No relative lifeCycle found')
   }
