@@ -4,11 +4,11 @@
   "description": "Images sequence scrolling engine",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist dist-lib",
+    "clean": "rimraf dist out-pkg",
     "test": "jest",
     "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.dev.js",
     "start": "webpack-dev-server --config webpack.config.dev.js",
-    "package": "yarn clean && cross-env NODE_ENV=production webpack"
+    "package:build": "yarn clean && cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -29,12 +29,14 @@
     "prettier-eslint": "9.0.1",
     "prettier-tslint": "0.4.2",
     "rimraf": "3.0.0",
+    "terser-webpack-plugin": "2.3.2",
     "ts-loader": "6.2.1",
     "tslint": "5.20.1",
     "typescript": "3.7.4",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1"
+    "webpack-dev-server": "3.10.1",
+    "webpack-merge": "4.2.2"
   },
   "dependencies": {}
 }
