@@ -1,32 +1,19 @@
 {
   "name": "karavai",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Images sequence scrolling engine",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist/",
+    "clean": "rimraf dist dist-lib",
     "test": "jest",
     "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.dev.js",
     "start": "webpack-dev-server --config webpack.config.dev.js",
-    "package": "rimraf dist-lib && cross-env NODE_ENV=production webpack"
+    "package": "yarn clean && cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/igorexec/karavai.git"
   },
-  "keywords": [
-    "scrolling",
-    "smooth",
-    "canvas",
-    "animation",
-    "scroll",
-    "images",
-    "change",
-    "on",
-    "scroll",
-    "dynamic",
-    "canvas"
-  ],
   "author": "Igor Cheliadinski <me@igordev.info>",
   "license": "MIT",
   "bugs": {
