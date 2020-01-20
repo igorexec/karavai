@@ -4,7 +4,7 @@ const {tsPreset} = require('./typescript')
 
 const commonConfig = {
   mode: env.production ? 'production' : 'development',
-  devtool: env.production ? 'hidden-source-map' : 'cheap-module-eval-source-map',
+  devtool: env.production ? undefined : 'cheap-module-eval-source-map',
   optimization: {
     minimize: env.production
   },
