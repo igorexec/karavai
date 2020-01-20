@@ -10,8 +10,8 @@
     "package:build": "yarn clean && cross-env NODE_ENV=production webpack && yarn package:copytypes",
     "preview:build": "yarn clean && cross-env NODE_ENV=production webpack",
     "preview:start": "yarn clean && webpack-dev-server",
-    "package:patch": "npm version patch --prefix ./lib",
-    "package:publish": "npm publish --prefix ./bundle",
+    "package:patch": "yarn version --patch --cwd ./lib",
+    "package:publish": "yarn publish ./bundle",
     "package:deploy": "yarn package:patch && yarn package:build && yarn package:publish"
   },
   "repository": {
