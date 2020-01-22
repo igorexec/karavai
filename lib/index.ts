@@ -56,12 +56,18 @@ export default class Karavai {
   }
 
   private drawImageOnCanvas = (imgPath: string): void => {
-    let image = this.cachedImages.get(imgPath)
-
-    // TODO: if no image, download it, show and add to cache
-    if (!image) {
-      image = createImage(imgPath)
+    const image = this.cachedImages.get(imgPath)
+    if (image) {
+      this.setCanvasImage(image)
+      return
     }
+    preloadImage(imgPath).then(img => {
+      this.cachedImages.set(imgPath, img)
+      this.setCanvasImage(img)
+    })
+  }
+
+  private setCanvasImage = (image: HTMLImageElement): void => {
     this.canvasRef.width = image.width
     this.canvasRef.height = image.height
     if (this.context) {
