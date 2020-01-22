@@ -5,6 +5,7 @@ import {drawImageOnCanvas} from './canvas'
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
   private startPosition = 0
+  private currentFrameIndex: number
   private readonly context: CanvasRenderingContext2D | null
   private readonly cachedImages: Map<string, HTMLImageElement>
 
@@ -15,6 +16,7 @@ export default class Karavai {
   ) {
     this.context = canvasRef.getContext('2d')
     this.cachedImages = new Map<string, HTMLImageElement>()
+    this.currentFrameIndex = 0
   }
 
   preloadImages = (): Promise<void[]> => {
@@ -39,9 +41,7 @@ export default class Karavai {
   }
 
   private subscribe = async (): Promise<void> => {
-    const image = await this.getImage(this.images[0])
-    drawImageOnCanvas(image, this.canvasRef, this.context)
-
+    this.updateImage(this.images[0])
     document.addEventListener('scroll', this.onScroll)
   }
 
@@ -55,11 +55,17 @@ export default class Karavai {
     const nextFrameIndex = Math.round(positionFromStart / threshold)
 
     const isLastFrame = nextFrameIndex + 1 > this.images.length
-    if (isLastFrame || nextFrameIndex < 0) {
+    const isSameFrame = this.currentFrameIndex === nextFrameIndex
+    if (isSameFrame || isLastFrame || nextFrameIndex < 0) {
       return
     }
 
-    const image = await this.getImage(this.images[nextFrameIndex])
+    this.updateImage(this.images[nextFrameIndex])
+    this.currentFrameIndex = nextFrameIndex
+  }
+
+  private updateImage = async (imagePath: string): Promise<void> => {
+    const image = await this.getImage(imagePath)
     drawImageOnCanvas(image, this.canvasRef, this.context)
   }
 
