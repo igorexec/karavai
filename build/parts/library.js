@@ -1,14 +1,5 @@
-const {entries, paths, outputs, env} = require('../constants')
+const {entries, paths, outputs} = require('../constants')
 const {copyPlugin} = require('../plugins')
-
-const getTarget = () => {
-  switch (env.type) {
-  case 'UMD':
-    return {filename: outputs.karavaiUMD, libraryTarget: 'umd'}
-  default:
-    return {filename: outputs.karavaiES5}
-  }
-}
 
 module.exports.library = {
   entry: entries.karavai,
@@ -19,8 +10,8 @@ module.exports.library = {
 
   output: {
     path: paths.distPackage,
+    filename: outputs.karavaiES5,
     library: 'Karavai',
-    libraryExport: 'default',
-    ...getTarget()
+    libraryExport: 'default'
   }
 }
