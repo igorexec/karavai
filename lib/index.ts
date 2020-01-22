@@ -1,4 +1,4 @@
-import {createImage, preloadImage} from './image'
+import {preloadImage} from './image'
 import {KaravaiOptions} from './types'
 
 // tslint:disable-next-line:no-default-export
@@ -10,20 +10,17 @@ export default class Karavai {
   constructor(
     private images: string[],
     private canvasRef: HTMLCanvasElement,
-    private options: KaravaiOptions = {threshold: 30},
+    private options: KaravaiOptions = {threshold: 30, preload: images.length},
   ) {
     this.context = canvasRef.getContext('2d')
     this.cachedImages = new Map<string, HTMLImageElement>()
   }
 
-  preloadImages = (): Promise<void[]> =>
-    Promise.all(
-      this.images.map(imagePath =>
-        preloadImage(imagePath).then(img => {
-          this.cachedImages.set(imagePath, img)
-        }),
-      ),
-    )
+  preloadImages = (): Promise<HTMLImageElement[]> => {
+    const {preload} = this.options
+    const decoupledImages = this.images.slice(0, preload)
+    return Promise.all(decoupledImages.map(this.preloadAndCacheImage))
+  }
 
   start = (): void => {
     this.startPosition = window.pageYOffset
@@ -44,8 +41,9 @@ export default class Karavai {
   }
 
   private onScroll = (): void => {
+    const {threshold} = this.options
     const positionFromStart = window.pageYOffset - this.startPosition
-    const nextFrameIndex = Math.round(positionFromStart / this.options.threshold)
+    const nextFrameIndex = Math.round(positionFromStart / threshold)
 
     const isLastFrame = nextFrameIndex + 1 > this.images.length
     if (isLastFrame || nextFrameIndex < 0) {
@@ -55,23 +53,27 @@ export default class Karavai {
     this.drawImageOnCanvas(this.images[nextFrameIndex])
   }
 
-  private drawImageOnCanvas = (imgPath: string): void => {
-    const image = this.cachedImages.get(imgPath)
-    if (image) {
-      this.setCanvasImage(image)
-      return
+  private drawImageOnCanvas = async (imgPath: string): Promise<void> => {
+    let image = this.cachedImages.get(imgPath)
+    if (!image) {
+      image = await this.preloadAndCacheImage(imgPath)
     }
-    preloadImage(imgPath).then(img => {
-      this.cachedImages.set(imgPath, img)
-      this.setCanvasImage(img)
-    })
+    this.setCanvasImage(image)
   }
 
   private setCanvasImage = (image: HTMLImageElement): void => {
-    this.canvasRef.width = image.width
-    this.canvasRef.height = image.height
+    const {width, height} = image
+
+    this.canvasRef.width = width
+    this.canvasRef.height = height
     if (this.context) {
       this.context.drawImage(image, 0, 0)
     }
+  }
+
+  private preloadAndCacheImage = async (imagePath: string): Promise<HTMLImageElement> => {
+    const img = await preloadImage(imagePath)
+    this.cachedImages.set(imagePath, img)
+    return img
   }
 }
