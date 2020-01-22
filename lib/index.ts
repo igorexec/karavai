@@ -1,5 +1,6 @@
 import {loadImage} from './image'
 import {KaravaiOptions} from './types'
+import {drawImageOnCanvas} from './canvas'
 
 // tslint:disable-next-line:no-default-export
 export default class Karavai {
@@ -28,9 +29,11 @@ export default class Karavai {
     )
   }
 
-  start = (): void => {
+  start = async (): Promise<void> => {
     this.startPosition = window.pageYOffset
-    this.drawImageOnCanvas(this.images[0])
+    const image = await this.getImage(this.images[0])
+    drawImageOnCanvas(image, this.canvasRef, this.context)
+
     this.subscribe()
   }
 
@@ -46,7 +49,7 @@ export default class Karavai {
     document.removeEventListener('scroll', this.onScroll)
   }
 
-  private onScroll = (): void => {
+  private onScroll = async (): Promise<void> => {
     const {threshold} = this.options
     const positionFromStart = window.pageYOffset - this.startPosition
     const nextFrameIndex = Math.round(positionFromStart / threshold)
@@ -56,25 +59,16 @@ export default class Karavai {
       return
     }
 
-    this.drawImageOnCanvas(this.images[nextFrameIndex])
+    const image = await this.getImage(this.images[nextFrameIndex])
+    drawImageOnCanvas(image, this.canvasRef, this.context)
   }
 
-  private drawImageOnCanvas = async (imgPath: string): Promise<void> => {
+  private getImage = async (imgPath: string): Promise<HTMLImageElement> => {
     let image = this.cachedImages.get(imgPath)
     if (!image) {
       image = await loadImage(imgPath)
       this.cachedImages.set(imgPath, image)
     }
-    this.setCanvasImage(image)
-  }
-
-  private setCanvasImage = (image: HTMLImageElement): void => {
-    const {width, height} = image
-
-    this.canvasRef.width = width
-    this.canvasRef.height = height
-    if (this.context) {
-      this.context.drawImage(image, 0, 0)
-    }
+    return image
   }
 }
