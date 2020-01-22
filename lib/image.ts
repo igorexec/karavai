@@ -1,4 +1,4 @@
-export const preloadImage = (imagePath: string): Promise<HTMLImageElement> =>
+export const loadImage = (imagePath: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject): void => {
     const image = new Image()
     image.src = imagePath
