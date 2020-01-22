@@ -13,7 +13,7 @@
     "preview:build": "yarn clean && cross-env NODE_ENV=production webpack",
     "preview:start": "yarn clean && webpack-dev-server",
     "package:patch": "yarn version --patch --cwd ./lib",
-    "package:publish": "yarn publish --cwd ./bundle",
+    "package:publish": "yarn publish --cwd ./bundle --non-interactive",
     "package:deploy": "yarn package:patch && yarn package:build && yarn package:publish"
   },
   "repository": {
