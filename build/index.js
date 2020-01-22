@@ -6,7 +6,8 @@ const createWebpackConfig = lifeCycle => {
   switch (lifeCycle) {
   case 'preview:build':
     return merge.smart(basePreset, preview)
-  case 'package:build':
+  case 'package:build:es5':
+  case 'package:build:umd':
     return merge.smart(basePreset, library)
   case 'preview:start':
     return merge.smart(basePreset, preview, devServerPreset)
