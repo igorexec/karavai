@@ -3,6 +3,7 @@ const path = require('path')
 const PRODUCTION = process.env.NODE_ENV === 'production'
 const DEBUG = process.env.DEBUG === 'debug'
 const PORT = process.env.PORT || 8080
+const TYPE = process.env.TYPE || null
 
 const root = path.resolve(__dirname, '..')
 const library = path.resolve(root, 'lib')
@@ -21,14 +22,16 @@ module.exports = {
   env: {
     production: PRODUCTION,
     debug: DEBUG,
-    port: PORT
+    port: PORT,
+    type: TYPE
   },
   entries: {
     karavai: path.resolve(library, 'index.ts'),
     preview: path.resolve(src, 'index.ts')
   },
   outputs: {
-    karavai: 'index.js'
+    karavaiUMD: 'karavai.umd.js',
+    karavaiES5: 'karavai.es5.js'
   },
   paths: {
     root,
