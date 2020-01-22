@@ -29,11 +29,8 @@ export default class Karavai {
     )
   }
 
-  start = async (): Promise<void> => {
+  start = (): void => {
     this.startPosition = window.pageYOffset
-    const image = await this.getImage(this.images[0])
-    drawImageOnCanvas(image, this.canvasRef, this.context)
-
     this.subscribe()
   }
 
@@ -41,7 +38,10 @@ export default class Karavai {
     this.unsubscribe()
   }
 
-  private subscribe = (): void => {
+  private subscribe = async (): Promise<void> => {
+    const image = await this.getImage(this.images[0])
+    drawImageOnCanvas(image, this.canvasRef, this.context)
+
     document.addEventListener('scroll', this.onScroll)
   }
 
