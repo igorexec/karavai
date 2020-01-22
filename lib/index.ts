@@ -16,30 +16,34 @@ export default class Karavai {
     this.cachedImages = new Map<string, HTMLImageElement>()
   }
 
-  preloadImages = () =>
+  preloadImages = (): Promise<void[]> =>
     Promise.all(
-      this.images.map(imagePath => preloadImage(imagePath).then(img => this.cachedImages.set(imagePath, img))),
+      this.images.map(imagePath =>
+        preloadImage(imagePath).then(img => {
+          this.cachedImages.set(imagePath, img)
+        }),
+      ),
     )
 
-  start = () => {
+  start = (): void => {
     this.startPosition = window.pageYOffset
     this.drawImageOnCanvas(this.images[0])
     this.subscribe()
   }
 
-  stop = () => {
+  stop = (): void => {
     this.unsubscribe()
   }
 
-  private subscribe = () => {
+  private subscribe = (): void => {
     document.addEventListener('scroll', this.onScroll)
   }
 
-  private unsubscribe = () => {
+  private unsubscribe = (): void => {
     document.removeEventListener('scroll', this.onScroll)
   }
 
-  private onScroll = () => {
+  private onScroll = (): void => {
     const positionFromStart = window.pageYOffset - this.startPosition
     const nextFrameIndex = Math.round(positionFromStart / this.options.threshold)
 
@@ -51,7 +55,7 @@ export default class Karavai {
     this.drawImageOnCanvas(this.images[nextFrameIndex])
   }
 
-  private drawImageOnCanvas = (imgPath: string) => {
+  private drawImageOnCanvas = (imgPath: string): void => {
     let image = this.cachedImages.get(imgPath)
 
     // TODO: if no image, download it, show and add to cache

@@ -1,8 +1,6 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:latest"
-  ],
+  "extends": ["tslint:latest"],
   "rules": {
     "quotemark": {
       "options": ["single"]
@@ -31,6 +29,7 @@
     "semicolon": {
       "options": "never"
     },
-    "prettier": true
+    "prettier": true,
+    "typedef": [true, "call-signature", "arrow-call-signature"]
   }
 }
