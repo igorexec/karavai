@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist bundle ./@types lib/*.d.ts src/*.d.ts",
-    "test": "jest",
+    "package:test": "jest",
+    "package:test:start": "jest --watchAll",
+    "package:test:coverage": "jest --coverage",
     "package:copytypes": "copyfiles --flat @types/lib/*.d.ts ./bundle/@types",
     "package:build:es5": "cross-env NODE_ENV=production webpack",
     "package:build:umd": "cross-env NODE_ENV=production cross-env TYPE=UMD webpack",
@@ -26,6 +28,7 @@
   },
   "homepage": "https://github.com/igorexec/karavai#readme",
   "devDependencies": {
+    "@types/jest": "24.9.0",
     "copy-webpack-plugin": "5.1.1",
     "copyfiles": "2.2.0",
     "cross-env": "6.0.3",
@@ -37,6 +40,7 @@
     "prettier-tslint": "0.4.2",
     "rimraf": "3.0.0",
     "terser-webpack-plugin": "2.3.2",
+    "ts-jest": "24.3.0",
     "ts-loader": "6.2.1",
     "tslint": "5.20.1",
     "typescript": "3.7.4",
