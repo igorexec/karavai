@@ -1,6 +1,6 @@
 {
   "name": "karavai",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Images sequence scrolling engine",
   "main": "karavai.umd.js",
   "esm5": "karavai.es5.js",
@@ -27,5 +27,5 @@
   "bugs": {
     "url": "https://github.com/igorexec/karavai/issues"
   },
-  "homepage": "https://github.com/igorexec/karavai#readme"
+  "homepage": "https://karavai.netlify.com/"
 }
