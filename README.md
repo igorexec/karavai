@@ -16,6 +16,8 @@
 ---
 ## [Demo](https://karavai.netlify.com)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/89eefe85-3dda-4fa7-b596-5bd6b9da885e/deploy-status)](https://app.netlify.com/sites/karavai/deploys)
+
 ## Installation
 
 ### CDN
