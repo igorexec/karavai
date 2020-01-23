@@ -11,6 +11,7 @@
 ![Deps](https://img.shields.io/david/igorexec/karavai)
 ![Maintainability](https://img.shields.io/codeclimate/maintainability/igorexec/karavai)
 ![Issues](https://img.shields.io/codeclimate/issues/igorexec/karavai)
+![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/igorexec/karavai)
 
 ![ZIP Size](https://img.shields.io/bundlephobia/minzip/karavai)
 ---
