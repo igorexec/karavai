@@ -1,8 +1,15 @@
 # Karavai JS
 
-## KaravaiJS - Images sequence scrolling engine
+## KaravaiJS - Images sequence scrolling engine with no dependencies
 
+[NPM](https://nodei.co/npm/karavai.png?downloads=true&downloadRank=true&stars=true)
+[![Issues](https://img.shields.io/github/issues/igorexec/karavai)]
+[![License](https://img.shields.io/github/license/igorexec/karavai)]
+[![Size](https://img.shields.io/bundlephobia/minzip/karavai)]
+
+---
 ## [Demo](https://karavai.netlify.com)
+---
 
 ## Installation
 
