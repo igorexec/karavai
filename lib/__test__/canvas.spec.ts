@@ -27,12 +27,13 @@ describe('[Service] Canvas', () => {
 
     describe('when has context', () => {
       beforeEach(() => {
-        contextMock = ({drawImage: jest.fn()} as any) as CanvasRenderingContext2D
+        contextMock = canvasMock.getContext('2d') as CanvasRenderingContext2D
+        jest.spyOn(contextMock, 'drawImage').mockImplementation()
         drawImageOnCanvas(imageMock, canvasMock, contextMock)
       })
 
-      test('it calls drawImage on context with correct arguments', () => {
-        expect(contextMock).not.toBeNull()
+      test('call drawImage on context with correct arguments', () => {
+        expect(contextMock.drawImage).toHaveBeenCalledWith(imageMock, 0, 0)
       })
     })
   })
