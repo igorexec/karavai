@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/karavai.png)](https://nodei.co/npm/karavai/)
 
-![Status](https://github.com/igorexec/karavai/workflows/coverage/badge.svg)
+![Status](https://github.com/igorexec/karavai/workflows/Coverage/badge.svg)
 [![codecov](https://codecov.io/gh/igorexec/karavai/branch/master/graph/badge.svg)](https://codecov.io/gh/igorexec/karavai)
 ![Issues](https://img.shields.io/github/issues/igorexec/karavai)
 ![License](https://img.shields.io/github/license/igorexec/karavai)
