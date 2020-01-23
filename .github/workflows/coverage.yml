@@ -1,0 +1,23 @@
+name: Coverage
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+  
+jobs:
+  coverage:
+    name: Generate coverage report
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        with:
+          node-version: 11.x
+      - run: yarn install
+      - run: yarn package:test:coverage
+        
