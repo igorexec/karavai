@@ -8,8 +8,9 @@
 [![codecov](https://codecov.io/gh/igorexec/karavai/branch/master/graph/badge.svg)](https://codecov.io/gh/igorexec/karavai)
 ![Issues](https://img.shields.io/github/issues/igorexec/karavai)
 ![License](https://img.shields.io/github/license/igorexec/karavai)
-![Size](https://img.shields.io/bundlephobia/minzip/karavai)
 
+![ZIP Size](https://img.shields.io/bundlephobia/minzip/karavai)
+![Size](https://img.shields.io/bundlephobia/min/karavai)
 ---
 ## [Demo](https://karavai.netlify.com)
 
