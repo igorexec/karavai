@@ -64,14 +64,14 @@ const karavai = new Karavai(images, canvasRef);
 karavai.preloadImages(); // -> Promise
 ```
 
-#### start() - start karavai. It will start logic which updates images on scroll.
+#### start - start karavai. It will start logic which updates images on scroll.
 
 ```javascript
 const karavai = new Karavai(images, canvasRef);
 karavai.start();
 ```
 
-#### stop() - stop karavai. It will stop logic which updates images on scroll.
+#### stop - stop karavai. It will stop logic which updates images on scroll.
 
 ```javascript
 const karavai = new Karavai(images, canvasRef);
