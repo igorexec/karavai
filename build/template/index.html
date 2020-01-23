@@ -16,9 +16,41 @@
         height: 100vh;
         object-fit: cover;
       }
+      .info {
+        position: fixed;
+        font-family: sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+      }
+      .info__header {
+        text-transform: uppercase;
+        font-size: 8rem;
+        font-weight: lighter;
+        text-shadow: 4px 8px 5px #000000;
+      }
+      .info__description {
+        font-size: 4rem;
+        font-weight: lighter;
+        text-shadow: 1px 1px 5px #000000;
+      }
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
+    <section class="info">
+      <h1 class="info__header">Karavai JS</h1>
+      <h4 class="info__description">Images sequence scrolling engine with no dependencies</h4>
+    </section>
   </body>
 </html>
