@@ -12,16 +12,21 @@ export default class Karavai {
   constructor(
     private images: string[],
     private canvasRef: HTMLCanvasElement,
-    private options: KaravaiOptions = {threshold: 30, preload: images.length},
+    private options: KaravaiOptions = {threshold: 30},
   ) {
     this.context = canvasRef.getContext('2d')
     this.cachedImages = new Map<string, HTMLImageElement>()
     this.currentFrameIndex = 0
   }
 
-  preloadImages = (): Promise<void[]> => {
-    const {preload} = this.options
-    const decoupledImages = this.images.slice(0, preload)
+  /**
+   * Preloads images for karavai.
+   *
+   * @param {number} amount - The amount of images to preload
+   * @returns {Promise}
+   */
+  preloadImages = (amount: number = this.images.length): Promise<void[]> => {
+    const decoupledImages = this.images.slice(0, amount)
 
     return Promise.all(
       decoupledImages.map(async imgPath => {
@@ -31,11 +36,19 @@ export default class Karavai {
     )
   }
 
+  /**
+   * Starts karavai.
+   * It will start logic which updates images on scroll.
+   */
   start = (): void => {
     this.startPosition = window.pageYOffset
     this.subscribe()
   }
 
+  /**
+   * Stops karavai.
+   * It will stop logic which updates images on scroll.
+   */
   stop = (): void => {
     this.unsubscribe()
   }
