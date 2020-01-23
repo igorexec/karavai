@@ -14,6 +14,7 @@
     "package:build:umd": "cross-env NODE_ENV=production cross-env TYPE=UMD webpack",
     "package:build": "yarn clean && yarn package:build:es5 && yarn package:build:umd && yarn package:copy:types && yarn package:copy:readme",
     "preview:start": "yarn clean && webpack-dev-server",
+    "preview:build": "yarn clean && cross-env NODE_ENV=production webpack",
     "package:patch": "yarn version --patch --cwd ./lib",
     "package:publish": "yarn publish --cwd ./bundle --non-interactive",
     "package:deploy": "yarn package:patch && yarn package:build && yarn package:publish"

@@ -6,13 +6,17 @@
 
 ![Status](https://github.com/igorexec/karavai/workflows/Coverage/badge.svg)
 [![codecov](https://codecov.io/gh/igorexec/karavai/branch/master/graph/badge.svg)](https://codecov.io/gh/igorexec/karavai)
-![Issues](https://img.shields.io/github/issues/igorexec/karavai)
 ![License](https://img.shields.io/github/license/igorexec/karavai)
-![Size](https://img.shields.io/bundlephobia/minzip/karavai)
+![Deps](https://img.shields.io/david/igorexec/karavai)
+![Maintainability](https://img.shields.io/codeclimate/maintainability/igorexec/karavai)
+![Issues](https://img.shields.io/codeclimate/issues/igorexec/karavai)
+![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/igorexec/karavai)
 
+![ZIP Size](https://img.shields.io/bundlephobia/minzip/karavai)
 ---
 ## [Demo](https://karavai.netlify.com)
----
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/89eefe85-3dda-4fa7-b596-5bd6b9da885e/deploy-status)](https://app.netlify.com/sites/karavai/deploys)
 
 ## Installation
 
