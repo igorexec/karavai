@@ -6,7 +6,7 @@ import Karavai from 'lib'
 
   if (canvas) {
     const karavai = new Karavai(images, canvas)
-    await karavai.preloadImages(30)
+    await karavai.preloadImages()
     karavai.start()
   }
 })()
