@@ -20,4 +20,7 @@ jobs:
           node-version: 11.x
       - run: yarn install
       - run: yarn package:test:coverage
-
+      - name: Generate code coverage
+        uses: codecov/codecov-action@v1.0.5
+        with:
+            token: ${{secrets.CODECOV_TOKEN}}
