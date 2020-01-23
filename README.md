@@ -12,7 +12,6 @@
 
 ---
 ## [Demo](https://karavai.netlify.com)
----
 
 ## Installation
 
