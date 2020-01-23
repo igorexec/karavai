@@ -7,8 +7,13 @@
       body {
         display: flex;
         justify-content: center;
-        height: 1410px;
+        height: 8000px;
         margin: 0;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+      }
+      body::-webkit-scrollbar {
+        width: 0 !important;
       }
       canvas {
         position: fixed;
