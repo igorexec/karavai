@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
       - name: Setup node
+        uses: actions/checkout@v1
         with:
           node-version: 11.x
-      - run: yarn install
-      - run: yarn package:test:coverage
-        
+      - name: Run tests
+        run: yarn install
+        run: yarn package:test:coverage
+
