@@ -8,6 +8,8 @@ const createWebpackConfig = lifeCycle => {
     return merge.smart(basePreset, library)
   case 'package:build:umd':
     return merge.smart(basePreset, library, umdPreset)
+  case 'preview:build':
+    return merge.smart(basePreset, preview)
   case 'preview:start':
     return merge.smart(basePreset, preview, devServerPreset)
   default:
