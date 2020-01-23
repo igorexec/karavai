@@ -1,5 +1,6 @@
 webpack.config.js linguist-detectable=false
 prettier.config.js linguist-detectable=false
+jest.config.js linguist-detectable=false
 public/* linguist-detectable=false
 build/* linguist-detectable=false
 src/* linguist-detectable=false
