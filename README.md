@@ -6,7 +6,6 @@
 
 ![Status](https://github.com/igorexec/karavai/workflows/Coverage/badge.svg)
 [![codecov](https://codecov.io/gh/igorexec/karavai/branch/master/graph/badge.svg)](https://codecov.io/gh/igorexec/karavai)
-![Issues](https://img.shields.io/github/issues/igorexec/karavai)
 ![License](https://img.shields.io/github/license/igorexec/karavai)
 ![Deps](https://img.shields.io/david/igorexec/karavai)
 ![Maintainability](https://img.shields.io/codeclimate/maintainability/igorexec/karavai)
