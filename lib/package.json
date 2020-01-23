@@ -1,6 +1,6 @@
 {
   "name": "karavai",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Images sequence scrolling engine",
   "main": "karavai.umd.js",
   "esm5": "karavai.es5.js",
