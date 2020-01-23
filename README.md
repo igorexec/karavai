@@ -9,6 +9,8 @@
 ![Issues](https://img.shields.io/github/issues/igorexec/karavai)
 ![License](https://img.shields.io/github/license/igorexec/karavai)
 ![Deps](https://img.shields.io/david/igorexec/karavai)
+![Maintainability](https://img.shields.io/codeclimate/maintainability/igorexec/karavai)
+![Issues](https://img.shields.io/codeclimate/issues/igorexec/karavai)
 
 ![ZIP Size](https://img.shields.io/bundlephobia/minzip/karavai)
 ---
