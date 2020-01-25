@@ -24,6 +24,8 @@
         justify-content: center;
         height: 4000px;
         margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       }
       canvas {
         position: fixed;
@@ -41,8 +43,6 @@
         align-items: center;
         margin: 1rem 0;
         color: white;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         padding: 0 3rem;
       }
       .info__header {
@@ -58,6 +58,14 @@
         text-shadow: 1px 1px 5px #000000;
         margin: 0;
       }
+      .author {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        font-size: 2rem;
+        color: white;
+        text-shadow: 1px 1px 5px #000000;
+      }
     </style>
   </head>
   <body>
@@ -66,5 +74,6 @@
       <h1 class="info__header">Karavai JS</h1>
       <h4 class="info__description">Images sequence scrolling engine with no dependencies</h4>
     </section>
+    <section class="author">Photos by Anatolii Grycenko</section>
   </body>
 </html>
