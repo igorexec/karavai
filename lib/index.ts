@@ -53,7 +53,7 @@ export default class Karavai {
     this.unsubscribe()
   }
 
-  private subscribe = async (): Promise<void> => {
+  private subscribe = (): void => {
     this.updateImage(this.images[0])
     document.addEventListener('scroll', this.onScroll)
   }
